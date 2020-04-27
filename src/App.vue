@@ -100,6 +100,17 @@ export default {
        */
       this.currentQuestion = id;
     }
+  },
+  created() {
+    /**
+     * We will use this method to make an API request to wordpress to get the specific
+     * engagement JSON payload.
+     *
+     * We can use the Fetch browser API, or bring in a package like Axios to fetch
+     * this data:
+     * Fetch: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+     * Axios: https://www.npmjs.com/package/axios
+     */
   }
 };
 </script>
