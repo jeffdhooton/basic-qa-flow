@@ -1,17 +1,73 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <div class="question">
+      <component
+        :is="questions[currentQuestion].component"
+        :question="questions[currentQuestion]"
+        v-on:next-question="nextQuestion"
+      ></component>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import TextComponent from "./components/TextComponent";
+import ImageComponent from "./components/ImageComponent";
 
 export default {
   name: "App",
   components: {
-    HelloWorld
+    TextComponent,
+    ImageComponent
+  },
+  data() {
+    return {
+      currentQuestion: 0,
+      questions: [
+        {
+          id: 0,
+          component: "TextComponent",
+          title: "This is a text question?",
+          answers: [
+            {
+              copy: "answer one",
+              goto: 1
+            },
+            {
+              copy: "answer two",
+              goto: 2
+            }
+          ]
+        },
+        {
+          id: 1,
+          component: "TextComponent",
+          title: "This is question two",
+          copy2: "copy2",
+          answers: [
+            {
+              copy: "answer one",
+              goto: 2
+            },
+            {
+              copy: "answer two",
+              goto: 2
+            }
+          ]
+        },
+        {
+          id: 2,
+          component: "ImageComponent",
+          title: "title2",
+          copy2: "copy2"
+        }
+      ]
+    };
+  },
+  methods: {
+    nextQuestion(id) {
+      this.currentQuestion = id;
+    }
   }
 };
 </script>
